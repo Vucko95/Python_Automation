@@ -1,8 +1,13 @@
 import requests
+import os
 import json
+from dotenv import load_dotenv  # for python-dotenv method
+load_dotenv()  # for python-dotenv method
 
-url = "https://graph.facebook.com/v14.0/me?fields=id%2Cname&access_token=EAAp4yIylZAs0BAI0nke1ntTqgJ3ZAIOfeZC09niQYRcQrkWjB2PSfZCk805eZBA67wcSWCeNDp5p6f9HYbDAzlfcm2HUNh1PLV1lXC87GrHdVYmVLrYiHWw7Gwjx1hSRFHXF3ZAGQsuTKvX4vIOm1qsVy09VZAcxbvMF6q3EJgkp6NXyBPLhKF2g7NbfCkvu2BcEmFeZCSlTGYSvMybja44GQomf9TZBwQ6l2t78QlHAuVeHFkmvDNLez"
+
+token = os.environ.get('fb_token')
+url = f'https://graph.facebook.com/v14.0/me?fields=id%2Cname%2Cposts&access_token={token}'
 response = requests.get(url)
 print(response)
-print(response.content)
+print(response.text)
 # ALWAYS var.content to output actual INFO Not only 200
